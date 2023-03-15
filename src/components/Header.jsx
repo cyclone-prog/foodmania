@@ -5,7 +5,7 @@ function Header() {
       <div className="header">
         <div className="container">
           <nav>
-          <h1>FOODMANIA</h1>
+          <a href="#"><h1>FOODMANIA</h1></a>
           <ul>
             <li><a href="#">Home</a></li>
             <li><a href="#">About</a></li>

@@ -1,10 +1,10 @@
 function Footer() {
   return (
-    <div className="container">
-    <div>
-     this is a footer
-    </div>  
-    </div>
+    <footer>
+     <div class="container">
+        Developed By Roshan. 
+     </div>
+    </footer>
   )
 }
 

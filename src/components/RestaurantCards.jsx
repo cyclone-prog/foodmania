@@ -9,7 +9,7 @@ const RestaurantCards = ({name,cloudinaryImageId,cuisines,lastMileTravel}) => {
             <div className="cards-detail">
             <h4>{name}</h4>
             <p>{cuisines.join(",")}</p>
-            <p>{lastMileTravel} minutes</p>
+            <p>{lastMileTravel.toFixed(1)} minutes</p>
             </div>
             </div>
         
