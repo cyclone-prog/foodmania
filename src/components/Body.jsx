@@ -1,23 +1,34 @@
 import RestaurantCards from "./RestaurantCards";
 import { restaurantList } from "../constants";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
+const filterData = (searchText,restaurants) =>{
+  const filterData = restaurants.filter((res)=>
+  res.data.name.toLowerCase().includes(searchText.toLowerCase())
+  )
+  return filterData;
+}
 
 function Body() {
   const [restaurants,setRestaurants] = useState(restaurantList);
   const [searchText, setSearchText] = useState("");
-  const filterData = (searchText,restaurants) =>{
-    const filterData = restaurants.filter((res)=>
-    res.data.name.toLowerCase().includes(searchText.toLowerCase())
-    )
-    return filterData
+
+  useEffect(()=>{
+    getRestaurants();
+  },[]);
+  async function getRestaurants(){
+    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING");
+    const json = await data.json(); 
+    console.log(json);
+    setRestaurants(json?.data?.cards[2]?.data?.data?.cards); //optional chaining
   }
+
   return (
 
     <>
     
       <div className="container">
-       
+        
         <div className="search-group">
         <input type="text" 
         placeholder="Search" 

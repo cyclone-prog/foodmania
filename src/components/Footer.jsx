@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <footer>
-     <div class="container">
+     <div className="container">
         Developed By Roshan. 
      </div>
     </footer>
