@@ -1,6 +1,7 @@
 import RestaurantCards from "./RestaurantCards";
-import { restaurantList } from "../constants";
+// import { restaurantList } from "../constants";
 import { useState, useEffect } from "react";
+import SkeletonUI from "./SkeletonUI";
 
 const filterData = (searchText,restaurants) =>{
   const filterData = restaurants.filter((res)=>
@@ -10,7 +11,8 @@ const filterData = (searchText,restaurants) =>{
 }
 
 function Body() {
-  const [restaurants,setRestaurants] = useState(restaurantList);
+  const [allRestaurants,setAllRestaurants] = useState([]);
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
 
   useEffect(()=>{
@@ -19,14 +21,12 @@ function Body() {
   async function getRestaurants(){
     const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING");
     const json = await data.json(); 
-    console.log(json);
-    setRestaurants(json?.data?.cards[2]?.data?.data?.cards); //optional chaining
+    setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+    setFilteredRestaurant(json?.data?.cards[2]?.data?.data?.cards);
   }
 
-  return (
-
-    <>
-    
+  return (allRestaurants.length===0)? <SkeletonUI/>: (
+    <>    
       <div className="container">
         
         <div className="search-group">
@@ -36,12 +36,12 @@ function Body() {
         onChange={(e)=>setSearchText(e.target.value)}
         />
         <button onClick={()=>{
-          const data = filterData(searchText,restaurants)
-          setRestaurants(data);
+          const data = filterData(searchText,allRestaurants)
+          setFilteredRestaurant(data);
         }}>Search Text</button>
         </div>
         <div className="res-cards">
-        {restaurants.map((value)=>{
+        {filteredRestaurant.map((value)=>{
             return (
               <RestaurantCards {...value.data} key={value.data.id}/>
             )
