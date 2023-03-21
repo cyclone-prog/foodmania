@@ -2,6 +2,7 @@ import RestaurantCards from "./RestaurantCards";
 // import { restaurantList } from "../constants";
 import { useState, useEffect } from "react";
 import SkeletonUI from "./SkeletonUI";
+import { Link } from "react-router-dom";
 
 const filterData = (searchText,restaurants) =>{
   const filterData = restaurants.filter((res)=>
@@ -27,7 +28,7 @@ function Body() {
 
   return (allRestaurants.length===0)? <SkeletonUI/>: (
     <>    
-      <div className="container">
+      <div className="container container-top-margin">
         
         <div className="search-group">
         <input type="text" 
@@ -41,9 +42,12 @@ function Body() {
         }}>Search Text</button>
         </div>
         <div className="res-cards">
+        
         {filteredRestaurant.map((value)=>{
             return (
-              <RestaurantCards {...value.data} key={value.data.id}/>
+            <Link className="cards-anchor" to={"/restaurant/"+value.data.id}   key={value.data.id}>
+            <RestaurantCards {...value.data}/>
+            </Link>
             )
 
         })}

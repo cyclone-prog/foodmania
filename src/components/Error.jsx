@@ -6,7 +6,7 @@ function Error() {
   return (
     <>
     <Header/>
-    <div className="container" style={{color:'red'}}>
+    <div className="container container-top-margin"  style={{color:'red'}}>
         <h1>OOPS!!!</h1>
         <h3>ERROR..........</h3>
         <p>The page you are looking for cannot be found. <br />{err.status} {err.statusText}</p>

@@ -4,9 +4,13 @@
     padding:0;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
+    
 
 }
 .header{
+    top:0;
+    z-index:1;
+    position:fixed;
     width:100%;
     background-color: rgb(255, 253, 253);
     height: 10vh;
@@ -14,13 +18,26 @@
     border-bottom: 1px solid #9f9e9e;
     box-shadow: 1px 1px 5px 2px #979595;
 }
+.container-top-margin{
+    margin-top: 8em !important;
+}
 .container{
     width:90%;
     max-width: 1400px;
     margin:auto;
-
-    
 }
+.container-flex{
+    display: flex;
+    justify-content: space-between;
+}
+a{
+    text-decoration: none;
+    color:#E14F00;
+}
+.cards-anchor{
+    color:#000;
+}
+
 
 nav{
 
@@ -113,9 +130,37 @@ nav>ul>li{
     bottom: 0;
     /* justify-content: center; */
     gap:15px;
-    
-    
 
+}
+/* restaurant detail data ************* */
+.resDetailData{
+    width:50%;
+    margin: 2em 0;
+    padding: 1em 0;
+}
+.resDetailData:hover{
+    border: 1px solid rgb(217, 215, 215);
+
+    
+    /* box-shadow: 0px 0px 0px 1px #000; */
+}
+.resDetailName,.resDetailCuisines,.resDetailResName,.resDetailFlex{
+    margin:1em 0;
+}
+.resDetailName{
+    color:#ffa200f2;
+}
+
+
+.resDetailFlex{
+    color:rgb(148, 101, 7);
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    /* background-color: red; */
+}
+.resDetailData img{
+    width: 100%;
 }
 footer{
     text-align: center;
@@ -128,7 +173,7 @@ footer{
 @media(max-width:800px){
     .header{
         width:100%;
-        background-color: rgb(70, 77, 77);
+        background-color: rgb(255, 253, 253);
         height: 15vh;
         color:#FFF;
         
@@ -138,7 +183,6 @@ footer{
         display: flex;
         flex-direction: column;    
     }
-    
     /* display: flex;
     height: 10vh;
     justify-content: space-between;
